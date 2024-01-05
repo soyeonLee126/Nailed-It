@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.nailed_it"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.nailed_it"
