@@ -1,5 +1,6 @@
 package com.example.nailed_it.screen.calendar
 
+import DayOfWeek
 import DayOfWeek.FRI
 import DayOfWeek.MON
 import DayOfWeek.SAT
@@ -7,6 +8,7 @@ import DayOfWeek.SUN
 import DayOfWeek.THU
 import DayOfWeek.TUE
 import DayOfWeek.WED
+import DayOfWeek.dayOfWeekList
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,10 +31,16 @@ class MainCalendar {
 }
 
 @Composable
-fun CalendarList(dateRange: IntRange) {
+fun CalendarList(dateRange: IntRange, firstDayOfWeek: String) {
+    val firstDay = dayOfWeekList.indexOf(firstDayOfWeek)
     Column {
         DayOfWeekItem()
         Row() {
+            //첫 요일 전까지 빈 박스 생성
+            for (i in 1..firstDay) {
+                Spacer(modifier = Modifier.size(50.dp))
+            }
+            //첫 주는 생성, 날짜 넘으면 넘김
             dateRange.forEach { date ->
                 CalendarItem(date = date)
                 Spacer(modifier = Modifier.size(10.dp))
@@ -87,5 +95,5 @@ fun CalendarItem(date: Int) {
 @Preview
 @Composable
 fun CalendarItemPreview() {
-    CalendarList(1..30)
+    CalendarList(1..30, TUE)
 }

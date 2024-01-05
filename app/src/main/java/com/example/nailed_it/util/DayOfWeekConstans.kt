@@ -6,4 +6,6 @@ object DayOfWeek {
     const val FRI = "금"
     const val SAT = "토"
     const val SUN = "일"
+
+    val dayOfWeekList = listOf<String>(MON, TUE, WED, THU, FRI, SAT, SUN)
 }
