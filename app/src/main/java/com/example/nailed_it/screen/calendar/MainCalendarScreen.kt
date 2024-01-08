@@ -31,20 +31,40 @@ class MainCalendar {
 }
 
 @Composable
-fun CalendarList(dateRange: IntRange, firstDayOfWeek: String) {
+fun CalendarList(lastDate: Int, firstDayOfWeek: String) {
     val firstDay = dayOfWeekList.indexOf(firstDayOfWeek)
-    Column {
+    Column(modifier = Modifier.padding(10.dp)) {
         DayOfWeekItem()
+        //첫째주
         Row() {
             //첫 요일 전까지 빈 박스 생성
             for (i in 1..firstDay) {
-                Spacer(modifier = Modifier.size(50.dp))
+                Spacer(modifier = Modifier.size(60.dp, 0.dp))
             }
             //첫 주는 생성, 날짜 넘으면 넘김
-            dateRange.forEach { date ->
-                CalendarItem(date = date)
-                Spacer(modifier = Modifier.size(10.dp))
+            for (i in 1..7 - firstDay) {
+                CalendarItem(i)
             }
+        }
+        //둘째주
+        Row() {
+            for (i in 8 - firstDay..14 - firstDay) {
+                CalendarItem(i)
+            }
+        }
+        //셋째주
+        Row() {
+            for (i in 15 - firstDay..21 - firstDay) {
+                CalendarItem(i)
+            }
+        }
+        //넷째주
+        Row() {
+            for (i in 22 - firstDay..28 - firstDay) { CalendarItem(i) }
+        }
+        //다섯째주
+        Row() {
+            for (i in 29 - firstDay..lastDate) { CalendarItem(i) }
         }
     }
 }
@@ -52,8 +72,7 @@ fun CalendarList(dateRange: IntRange, firstDayOfWeek: String) {
 @Composable
 fun DayOfWeekItem() {
     val modifierForText = Modifier
-        .padding(10.dp)
-        .size(27.dp)
+        .size(50.dp)
     Row() {
         Text(text = MON, textAlign = TextAlign.Center, modifier = modifierForText)
         Text(text = TUE, textAlign = TextAlign.Center, modifier = modifierForText)
@@ -95,5 +114,5 @@ fun CalendarItem(date: Int) {
 @Preview
 @Composable
 fun CalendarItemPreview() {
-    CalendarList(1..30, TUE)
+    CalendarList(31, WED)
 }
