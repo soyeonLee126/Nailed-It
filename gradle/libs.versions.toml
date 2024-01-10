@@ -20,6 +20,7 @@ espresso-core = "3.5.1"
 javaxHilt = "1"
 coil = "1.4.0"
 lottie = "5.2.0"
+composeFoundation = "1.4.0"
 
 [libraries]
 androidx-activity = { module = "androidx.activity:activity", version.ref = "androidxActivity" }
@@ -29,6 +30,7 @@ androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtim
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidxNavigation" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidxNavigation" }
 androidx-paging-common = { module = "androidx.paging:paging-common", version.ref = "paging" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "composeFoundation" }
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 io-coil-kt = { module = "io.coil-kt:coil", version.ref = "coil" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
