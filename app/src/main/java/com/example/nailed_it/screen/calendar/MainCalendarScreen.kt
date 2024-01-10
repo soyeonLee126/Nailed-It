@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -28,10 +29,14 @@ import java.util.Calendar
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainCalendarScreen() {
-    //현재 달력
+    //초기화는 현재 월로
     val calendar = Calendar.getInstance()
+    val pagerState = rememberPagerState(
+        initialPage = calendar.get(Calendar.MONTH),
+    )
     HorizontalPager(
         pageCount = 12,
+        state = pagerState,
     ) { pageIndex ->
         calendar.set(Calendar.MONTH, pageIndex)
         MainCalendar(calendar = calendar)
