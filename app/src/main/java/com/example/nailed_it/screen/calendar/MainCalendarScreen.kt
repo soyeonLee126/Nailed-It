@@ -3,6 +3,7 @@ package com.example.nailed_it.screen.calendar
 import DayOfWeek.SAT
 import DayOfWeek.SUN
 import DayOfWeek.dayOfWeekList
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -49,7 +50,9 @@ fun MainCalendar(calendar: Calendar) {
             Calendar.DATE
         ) else 0
     mutableCalendar.set(Calendar.DATE, 1)
-    val firstDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 2
+    //일요일이 1일인 경우 이슈 있음
+    val firstDayOfWeek =
+        mutableCalendar.get(Calendar.DAY_OF_WEEK).let { if (it == 1) 6 else it - 2 }
     Column {
         MonthTitle(month = "${year}년 ${month + 1}월")
         Column(modifier = Modifier.padding(10.dp)) {
