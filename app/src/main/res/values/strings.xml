@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">nailed-it</string>
+    <string name="todays_routine">오늘의 운동</string>
 </resources>
