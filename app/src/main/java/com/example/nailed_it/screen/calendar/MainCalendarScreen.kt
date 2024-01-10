@@ -22,12 +22,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import java.util.Calendar
 
 @Composable
-fun MainCalendar() {
+fun MainCalendar(calendar: Calendar) {
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH) + 1
+    val lastDate = calendar.getActualMaximum(Calendar.DATE)
     Column {
-        MonthTitle(month = "2021년 8월")
-        DateList(lastDate = 31, firstDayOfWeek = THU)
+        MonthTitle(month = "${year}년 ${month}월")
+        DateList(lastDate = lastDate, firstDayOfWeek = THU)
     }
 }
 
@@ -47,7 +51,7 @@ fun DateList(lastDate: Int, firstDayOfWeek: String) {
     val firstDay = dayOfWeekList.indexOf(firstDayOfWeek)
 
     Column(modifier = Modifier.padding(10.dp)) {
-        DayOfWeekItem()
+        DayOfWeekList()
 
         var currentDay = 1
 
@@ -67,7 +71,7 @@ fun DateList(lastDate: Int, firstDayOfWeek: String) {
 }
 
 @Composable
-fun DayOfWeekItem() {
+fun DayOfWeekList() {
     val modifierForText = Modifier
         .size(50.dp)
     Row() {
@@ -107,5 +111,7 @@ fun CalendarItem(date: Int) {
 @Preview
 @Composable
 fun CalendarItemPreview() {
-    MainCalendar()
+    val calendar = Calendar.getInstance()
+    calendar.set(Calendar.MONTH, 7)
+    MainCalendar(calendar = calendar)
 }
