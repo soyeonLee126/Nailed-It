@@ -2,9 +2,7 @@ package com.example.nailed_it.screen.calendar
 
 import DayOfWeek.SAT
 import DayOfWeek.SUN
-import DayOfWeek.THU
 import DayOfWeek.dayOfWeekList
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -41,6 +39,7 @@ fun MainCalendarScreen() {
 
 @Composable
 fun MainCalendar(calendar: Calendar) {
+    val mutableCalendar = calendar
     val year = calendar.get(Calendar.YEAR)
     val month = calendar.get(Calendar.MONTH)
     val lastDate = calendar.getActualMaximum(Calendar.DATE)
@@ -49,8 +48,7 @@ fun MainCalendar(calendar: Calendar) {
         if (month == currentCalendar.get(Calendar.MONTH) && year == currentCalendar.get(Calendar.YEAR)) calendar.get(
             Calendar.DATE
         ) else 0
-    Log.e("11111", currentDate.toString())
-    calendar.set(Calendar.DATE, 1)
+    mutableCalendar.set(Calendar.DATE, 1)
     val firstDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 2
     Column {
         MonthTitle(month = "${year}년 ${month + 1}월")
