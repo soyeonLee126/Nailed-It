@@ -1,16 +1,8 @@
 package com.example.nailed_it.screen.calendar
 
-import DayOfWeek.SAT
-import DayOfWeek.SUN
-import DayOfWeek.dayOfWeekList
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,15 +12,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.domain.model.WorkoutRoutine
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -66,7 +57,9 @@ fun MainCalendarScreen() {
                 WorkoutList(listOf(testWorkoutRoutine1, testWorkoutRoutine2, testWorkoutRoutine3))
             }
         }
-        AddRoutineButton(modifier = Modifier.align(CenterHorizontally), onClick = {
+        AddRoutineButton(modifier = Modifier
+            .align(Alignment.End)
+            .padding(20.dp, 20.dp), onClick = {
             Log.e("test", "test")
         })
     }
@@ -75,11 +68,17 @@ fun MainCalendarScreen() {
 @Composable
 fun AddRoutineButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     FloatingActionButton(
-        modifier = Modifier.size(56.dp),
+        modifier = modifier.size(56.dp),
         onClick = { onClick() },
     ) {
         Icon(Icons.Filled.Add, "Floating action button.")
     }
 }
 
+
+@Preview
+@Composable
+fun screenPreview() {
+    MainCalendarScreen()
+}
 

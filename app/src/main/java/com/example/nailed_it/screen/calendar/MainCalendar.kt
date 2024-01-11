@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,15 +37,17 @@ fun MainCalendar(calendar: Calendar) {
     //일요일이 1일인 경우 이슈 있음
     val firstDayOfWeek =
         mutableCalendar.get(Calendar.DAY_OF_WEEK).let { if (it == 1) 6 else it - 2 }
-    Column {
-        MonthTitle(month = "${year}년 ${month + 1}월")
-        Column(modifier = Modifier.padding(10.dp)) {
-            DayOfWeekList()
-            DateList(
-                lastDate = lastDate,
-                firstDayOfWeek = firstDayOfWeek,
-                currentDate = currentDate
-            )
+    Card(modifier = Modifier.padding(10.dp)) {
+        Column {
+            MonthTitle(month = "${year}년 ${month + 1}월")
+            Column(modifier = Modifier.padding(10.dp)) {
+                DayOfWeekList()
+                DateList(
+                    lastDate = lastDate,
+                    firstDayOfWeek = firstDayOfWeek,
+                    currentDate = currentDate
+                )
+            }
         }
     }
 }

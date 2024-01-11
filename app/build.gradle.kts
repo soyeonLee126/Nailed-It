@@ -1,6 +1,10 @@
+import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.disableClassloaderCacheForProcessors
+
 plugins {
+    id("com.google.dagger.hilt.android")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
 android {
@@ -14,7 +18,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.hilttest.HiltTestRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -59,12 +64,21 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation(libs.androidx.compose.foundation)
+    implementation(libs.hilt.android)
     implementation(project(mapOf("path" to ":domain")))
-    testImplementation("junit:junit:4.13.2")
+    implementation(project(mapOf("path" to ":domain")))
+    implementation(libs.androidx.runner)
+    testImplementation(libs.hilt.android.test)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.hilt.android.test)
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    kapt(libs.hilt.android.compiler)
+    kaptTest(libs.hilt.android.compiler)
+    kaptAndroidTest(libs.hilt.android.compiler)
 }
